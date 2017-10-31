@@ -1,7 +1,7 @@
 .navbar-main {
     height: 110px;
     width: 100%;
-    background: #f2f2f2;
+    background: #fcfcfc;
     display: flex;
     flex-direction: column;
 }

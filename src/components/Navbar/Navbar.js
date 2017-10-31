@@ -5,26 +5,34 @@ import Drawer from 'material-ui/Drawer';
 import MDMenu from 'react-icons/lib/md/menu.js';
 import MDSearch from 'react-icons/lib/md/search.js';
 import MenuItem from 'material-ui/MenuItem';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { updateSalaries } from './../../ducks/reducer';
 
-export default class Navbar extends Component {
+class Navbar extends Component {
     constructor(){
         super();
 
         this.state = {
             open: false
         };
-        // this.handleToggle = this.handleToggle.bind(this);
     }
 
     handleToggle = () => this.setState({open: !this.state.open});
     
     handleClose = () => this.setState({open: false});
 
+    handleSearchClick = () => {
+        console.log('Will search and return to store')
+        this.props.updateSalaries(['test']);
+    }
+
     render(){
         return(
             <div className='navbar-main'>
+
                 <div className='navbar-top'>
-                    <h1 className='navbar-title'>relativepay</h1>
+                <Link to='/'><h1 className='navbar-title'>relativepay</h1></Link>
                     <div className='navbar-top-right'>
                         <Avatar size={30}/>
                         <div>
@@ -48,13 +56,27 @@ export default class Navbar extends Component {
                 </div>
                 <div className='navbar-bottom'>
                     <div className='navbar-search-container'>
-                        <div>
-                            <MDSearch size={30} color='#0caa41'/>
-                        </div>
-                        <input placeholder='Search jobs'/>
+                        <Link to='/results'>                        
+                            <div onClick={this.handleSearchClick}>
+                                <MDSearch 
+                                size={30} 
+                                color='#0caa41'/>
+                            </div>
+                        </Link>
+                        <input 
+                        ref='searchInput'
+                        placeholder='Search jobs'/>
                     </div>
                 </div>
             </div>
         )
     }
 }
+
+function mapStateToProps(state){
+    return {
+        salaries: state.salaries
+    }
+  }
+  
+  export default connect(mapStateToProps, { updateSalaries })(Navbar);

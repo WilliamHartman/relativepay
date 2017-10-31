@@ -4,3 +4,8 @@
   align-items: center;
 }
 
+.router-container {
+  width: 100%;
+  background: #eaeaea;
+  padding-top: 15px;
+}
