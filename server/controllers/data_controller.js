@@ -22,19 +22,26 @@ module.exports = {
                         let regRes = result[0].salary.replace(/[^0-9.]/g,"");
                         salariesArray.push({city_id: cities[i].city_id, salary: regRes});
                         db.post_salary([cities[i].city_id, jobID, regRes])
+                        console.log('success ', cities[i].city_name);
                     } else {
                         skippedCities.push(cities[i]);
-                    }
+                        console.log('fail ', cities[i].city_name);
+                    } 
                 });
             }
+            res.status(200).send(salariesArray);
         }
         console.log('In getSalaries')
         db.job_in_db(searchTerm)
             .then(job => {
                 console.log('In job in db')
-                if(job.length > 11110){
+                if(job.length > 0){
                     console.log('passed if')
-                    //db.get_salaries()
+                    db.get_salaries([searchTerm])
+                        .then( salaries => {
+                            console.log('sending back salaries')
+                            res.status(200).send(salaries)
+                        });
                 } else {
                     console.log('failed if')
                     db.post_job([searchTerm])
@@ -44,17 +51,13 @@ module.exports = {
                             .then( cities => {
                                 console.log('getting cities')
                                 for(let j=0; j<cities.length; j++){
-                                    setTimeout(getSalaries(j, cities, job[0].job_id), j * 200)
+                                    setTimeout(getSalaries(j, cities, job[0].job_id), j * 1000)
                                 }
-                
-                                // for(let j=0; j<skippedCities.length; j++){
-                                //     setTimeout(getSalaries(j, skippedCities), j * 200)
-                                // }
-                                res.status(200).send(cities);
                             })
                         })
                 }
             })
+        
     }, 
 
     getJobs: (req, res) => {

@@ -3,11 +3,24 @@ import './Results.css';
 import { connect } from 'react-redux';
 
 class Results extends Component {
+  constructor(){
+    super();
 
+    this.resultsList = this.resultsList.bind(this);
+  }
+    resultsList(){
+      return this.props.salaries.map( (salary, i) => {
+        return (
+          <div key={i}>{salary.city_name} - {salary.salary}</div>
+        )
+      })
+    }
+  
   render() {
+    let jsxSalaries = this.resultsList();
     return (
-      <div className="Home">
-        {this.props.salaries}
+      <div className="results">
+        {jsxSalaries}
       </div>
     );
   }
@@ -19,4 +32,4 @@ function mapStateToProps(state){
   }
 }
 
-export default connect(mapStateToProps, { })(Results);
+export default connect(mapStateToProps, {  })(Results);

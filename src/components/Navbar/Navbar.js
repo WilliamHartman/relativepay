@@ -14,8 +14,11 @@ class Navbar extends Component {
         super();
 
         this.state = {
-            open: false
+            open: false,
+            searchTerm: 'Search jobs'
         };
+        this.handleSearchClick = this.handleSearchClick.bind(this);
+        this.checkEnter = this.checkEnter.bind(this);
     }
 
     handleToggle = () => this.setState({open: !this.state.open});
@@ -24,13 +27,27 @@ class Navbar extends Component {
 
     handleSearchClick = () => {
         console.log('Will search and return to store')
-        this.props.updateSalaries(['test']);
+        this.props.updateSalaries(this.state.searchTerm);
+    }
+
+    updateSearchTerm = (e) => {
+        this.setState({searchTerm: e.target.value})      
+    }
+
+    checkEnter = (e) => {
+        if(e.keyCode === 13){
+            this.handleSearchClick();
+        }
+    }
+
+    searchBoxClick = () => {
+        this.setState({searchTerm: ''});
     }
 
     render(){
+
         return(
             <div className='navbar-main'>
-
                 <div className='navbar-top'>
                 <Link to='/'><h1 className='navbar-title'>relativepay</h1></Link>
                     <div className='navbar-top-right'>
@@ -64,12 +81,19 @@ class Navbar extends Component {
                             </div>
                         </Link>
                         <input 
-                        ref='searchInput'
+                        onClick={this.searchBoxClick.bind(this)}
+                        onChange={e => this.updateSearchTerm(e)}
+                        onKeyDown={e => this.checkEnter(e)}
+                        value={this.state.searchTerm}
                         placeholder='Search jobs'/>
                     </div>
                 </div>
             </div>
         )
+    }
+
+    mainRender(){
+        
     }
 }
 

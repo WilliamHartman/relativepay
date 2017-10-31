@@ -17,6 +17,7 @@
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.14",
     "redux": "^3.7.2",
+    "redux-promise-middleware": "^4.4.1",
     "request": "^2.83.0",
     "x-ray": "^2.3.2"
   },
@@ -27,5 +28,5 @@
     "eject": "react-scripts eject"
   },
   "main": "./server/index.js",
-  "proxy": "http://localhost:8082"
+  "proxy": "http://localhost:8080"
 }
