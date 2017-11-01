@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './Home.css';
 import { connect } from 'react-redux';
+import homeImgLarge from './homeImgLarge.png';
+import homeImgMobile from './homeImgMobile.png';
 
 
 class Home extends Component {
@@ -9,6 +11,9 @@ class Home extends Component {
 
     return (
       <div className="home">
+        <div className='home-image-container'>
+          <img src={homeImgLarge} alt="logo" className='home-image'/>
+        </div>
         <div>Home component</div>
       </div>
     );

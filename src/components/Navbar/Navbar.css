@@ -1,7 +1,7 @@
 .navbar-main {
     height: 110px;
     width: 100%;
-    background: #fcfcfc;
+    background: #142532;
     display: flex;
     flex-direction: column;
     text-decoration: none;
@@ -17,10 +17,27 @@
     border-bottom: 1px solid #666666;
 }
 
+.navbar-top-left {
+    height: 45px;
+    display: flex;
+    flex-direction: row;
+}
+
+.logo {
+    height: 40px;
+    width: 40px;
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
 .navbar-title {
     font-size: 26px;
-    color: #0caa41;
-    margin-left: 15px;
+    color: #85bb65;
+    margin-left: 5px;
+}
+
+.gold-text {
+    color: #ffcb00;
 }
 
 .navbar-top-right {
@@ -28,6 +45,16 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    align-items: center;
+}
+
+.drawer {
+    background-color: #142532 !important;
+}
+
+.menu-item {
+    color: white !important;
+    font-size: 20px !important;
 }
 
 .navbar-bottom {

@@ -8,10 +8,13 @@ import MenuItem from 'material-ui/MenuItem';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { updateSalaries } from './../../ducks/reducer';
+import { withRouter } from 'react-router';
+import logo from './relativepaylogo.png';
+
 
 class Navbar extends Component {
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
 
         this.state = {
             open: false,
@@ -22,7 +25,7 @@ class Navbar extends Component {
     }
 
     handleToggle = () => this.setState({open: !this.state.open});
-    
+     
     handleClose = () => this.setState({open: false});
 
     handleSearchClick = () => {
@@ -37,6 +40,7 @@ class Navbar extends Component {
     checkEnter = (e) => {
         if(e.keyCode === 13){
             this.handleSearchClick();
+            this.props.history.push('/results');
         }
     }
 
@@ -49,12 +53,16 @@ class Navbar extends Component {
         return(
             <div className='navbar-main'>
                 <div className='navbar-top'>
-                <Link to='/'><h1 className='navbar-title'>relativepay</h1></Link>
+                    <div className='navbar-top-left'>
+                        <img src={logo} alt="logo" className='logo'/>
+                        <Link to='/'><h1 className='navbar-title'>relative<span className='gold-text'>pay</span></h1></Link>
+                    </div>
                     <div className='navbar-top-right'>
                         <Avatar size={30}/>
                         <div>
                             <MDMenu
                             size={35}
+                            color='white'                         
                             onClick={this.handleToggle}
                             />
                             <Drawer
@@ -63,10 +71,11 @@ class Navbar extends Component {
                             open={this.state.open}
                             openSecondary={true}
                             onRequestChange={(open) => this.setState({open})}
+                            containerClassName='drawer'
                             >
-                            <MenuItem onClick={this.handleClose}>Home</MenuItem>
-                            <MenuItem onClick={this.handleClose}>About</MenuItem>
-                            <MenuItem onClick={this.handleClose}>Settings</MenuItem>
+                            <Link to='/'><MenuItem onClick={this.handleClose} className='menu-item'>Home</MenuItem></Link>
+                            <MenuItem onClick={this.handleClose} className='menu-item'>About</MenuItem>
+                            <MenuItem onClick={this.handleClose} className='menu-item'>Settings</MenuItem>
                             </Drawer>
                         </div>
                     </div>
@@ -76,8 +85,7 @@ class Navbar extends Component {
                         <Link to='/results'>                        
                             <div onClick={this.handleSearchClick}>
                                 <MDSearch 
-                                size={30} 
-                                color='#0caa41'/>
+                                size={30}/>
                             </div>
                         </Link>
                         <input 
@@ -103,4 +111,4 @@ function mapStateToProps(state){
     }
   }
   
-  export default connect(mapStateToProps, { updateSalaries })(Navbar);
+  export default withRouter(connect(mapStateToProps, { updateSalaries })(Navbar));
