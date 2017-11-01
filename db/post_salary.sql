@@ -1,1 +1,1 @@
-insert into salaries (city_id, job_id, salary) values ($1, $2, $3);
+insert into salaries (city_id, job_id, salary, relative_salary) values ($1, $2, $3, $4);

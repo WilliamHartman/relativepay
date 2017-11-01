@@ -6,7 +6,7 @@ require('dotenv').config();
 const massive = require('massive');
 const baseURL = `/api/salaries`;
 
-
+//Middleware
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
@@ -18,6 +18,7 @@ massive(process.env.CONNECTION_STRING)
     app.set('db', db)
 }).catch(err=>console.log(err))
 
+//Endpoints
 app.get(`${baseURL}/get/:job`, dCtrl.getSalaries)
 app.get(`${baseURL}/getjobs`, dCtrl.getJobs)
 

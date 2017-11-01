@@ -11,7 +11,7 @@ class Results extends Component {
     resultsList(){
       return this.props.salaries.map( (salary, i) => {
         return (
-          <div key={i}>{salary.city_name} - {salary.salary}</div>
+          <div key={i}>{salary.city_name} - {salary.relative_salary}</div>
         )
       })
     }
