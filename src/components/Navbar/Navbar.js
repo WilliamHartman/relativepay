@@ -7,7 +7,7 @@ import MDSearch from 'react-icons/lib/md/search.js';
 import MenuItem from 'material-ui/MenuItem';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { updateSalaries } from './../../ducks/reducer';
+import { updateSalaries, removeSalaries } from './../../ducks/reducer';
 import { withRouter } from 'react-router';
 import logo from './relativepaylogo.png';
 
@@ -29,7 +29,7 @@ class Navbar extends Component {
     handleClose = () => this.setState({open: false});
 
     handleSearchClick = () => {
-        console.log('Will search and return to store')
+        this.props.removeSalaries();
         this.props.updateSalaries(this.state.searchTerm);
     }
 
@@ -111,4 +111,4 @@ function mapStateToProps(state){
     }
   }
   
-  export default withRouter(connect(mapStateToProps, { updateSalaries })(Navbar));
+  export default withRouter(connect(mapStateToProps, { updateSalaries, removeSalaries })(Navbar));

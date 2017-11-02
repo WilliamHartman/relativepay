@@ -5,6 +5,7 @@ const initialState = {
 }
 
 const UPDATE_SALARIES = 'UPDATE_SALARIES'; 
+const REMOVE_SALARIES = 'REMOVE_SALARIES';  
 
 
 export function updateSalaries( searchTerm ){
@@ -15,6 +16,13 @@ export function updateSalaries( searchTerm ){
     }
 }
 
+export function removeSalaries (){
+    return {
+        type: REMOVE_SALARIES,
+        payload: []
+    }
+}
+
 
 
 
@@ -22,6 +30,8 @@ export default function reducer(state=initialState, action) {
     switch(action.type){
         case UPDATE_SALARIES + '_FULFILLED':
             console.log('payload: ', action.payload)
+            return Object.assign({}, state, {salaries: action.payload});
+        case REMOVE_SALARIES:
             return Object.assign({}, state, {salaries: action.payload});
 
 

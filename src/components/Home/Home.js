@@ -1,20 +1,24 @@
 import React, { Component } from 'react';
 import './Home.css';
 import { connect } from 'react-redux';
-import homeImgLarge from './homeImgLarge.png';
-import homeImgMobile from './homeImgMobile.png';
+import { removeSalaries } from './../../ducks/reducer';
 
 
 class Home extends Component {
+
+  componentDidMount = () => {
+    this.props.removeSalaries();
+  }
+  
 
   render() {
 
     return (
       <div className="home">
         <div className='home-image-container'>
-          <img src={homeImgLarge} alt="logo" className='home-image'/>
+          <h4 className='home-image-rp'>RELATIVEPAY</h4>
+          <h1 className='home-image-sal'>SALARIES</h1>
         </div>
-        <div>Home component</div>
       </div>
     );
   }
@@ -26,4 +30,4 @@ function mapStateToProps(state){
   }
 }
 
-export default connect(mapStateToProps, { })(Home);
+export default connect(mapStateToProps, { removeSalaries })(Home);

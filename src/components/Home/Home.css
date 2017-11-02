@@ -3,15 +3,29 @@
     height: 900px;
     border-radius: 3px;
     background: #fcfcfc;
+    font-family: 'Nunito', sans-serif;
 }
 
 .home-image-container{
     max-width: 100%;
     height: 200px;
+    overflow: hidden;
+    background-image: url("./homeImgLarge.png");
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.home-image {
-    max-width: 100%;
-    min-width: 100%;
-    height: 200px;
+.home-image-rp {
+    color: white;
+    margin: 0px;
+    font-size: 20px;
+}
+
+.home-image-sal {
+    color: white;
+    margin-top: 10px;
+    font-size: 50px;
+    font-weight: 800;
 }
