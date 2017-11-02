@@ -2,6 +2,9 @@ const Xray = require('x-ray');
 const request = require('request');
 const fs = require('fs');
 const xray = new Xray();
+const GoogleImages = require('google-images');
+const google = new GoogleImages('008285851456266523243:zkcooi51hga','AIzaSyDIwcIN-uwJeNo8bkbzb1Tb_VqMUuAU9So');
+
 
 const gdURL = 'https://www.glassdoor.com/Salaries/';
 
@@ -72,28 +75,33 @@ module.exports = {
                         .then( salaries => {
                             res.status(200).send(salaries)
                         });
+                    db.increment_times_searched([job[0].job_id, job[0].times_searched+1])
                 } else {
-                    //If job is not in the database, create it in jobs table
-                    db.post_job([searchTerm])
-                        .then( job => { 
-                            //Returns list of all cities and all their information in an object
-                            db.get_cities()
-                            .then( cities => {
-                                //Iterates through cities, calls the getsalaries function above. 
-                                //On a 0.2 second time out to avoid bot detection
-                                for(let j=0; j<cities.length; j++){
-                                    setTimeout(getSalaries(j, cities, job[0].job_id), j * 200)
-                                }
-                            })
+                    google.search(searchTerm)
+                        .then(images => {
+                           //If job is not in the database, create it in jobs table
+                            db.post_job([searchTerm, images[0].url])
+                            .then( job => { 
+                                //Returns list of all cities and all their information in an object
+                                db.get_cities()
+                                .then( cities => {
+                                    //Iterates through cities, calls the getsalaries function above. 
+                                    //On a 0.2 second time out to avoid bot detection
+                                    for(let j=0; j<cities.length; j++){
+                                        setTimeout(getSalaries(j, cities, job[0].job_id), j * 200)
+                                    }
+                                })
+                            }) 
                         })
+                    
                 }
             })
         
     }, 
 
-    getJobs: (req, res) => {
+    getPopularJobs: (req, res) => {
         const db = req.app.get('db');
-        db.get_jobs()
+        db.get_popular_jobs()
             .then(jobs => res.status(200).send(jobs))
             .catch(() => res.status(500).send());
     }

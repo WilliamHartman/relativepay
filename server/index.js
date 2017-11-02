@@ -20,7 +20,7 @@ massive(process.env.CONNECTION_STRING)
 
 //Endpoints
 app.get(`${baseURL}/get/:job`, dCtrl.getSalaries)
-app.get(`${baseURL}/getjobs`, dCtrl.getJobs)
+app.get(`${baseURL}/getpopularjobs`, dCtrl.getPopularJobs)
 
 const port = 8080;
 app.listen(port, () => console.log(`Listening on ${port}`));
