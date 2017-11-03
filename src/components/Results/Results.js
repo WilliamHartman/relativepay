@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Results.css';
 import { connect } from 'react-redux';
+import CircularProgress from 'material-ui/CircularProgress';
 import { getSalariesByState, getSalariesByRank, getSalariesByCity } from './../../ducks/reducer';
 
 class Results extends Component {
@@ -40,9 +41,27 @@ class Results extends Component {
   
   render() {
     let jsxSalaries = this.resultsList();
+    let jobName = '';
+
+    if(this.props.salaries.length === 0){
+      return (
+        <div className='results'>
+          <div className='loading-container'>
+            <CircularProgress size={80} thickness={7} color={'#85bb65'} className='loading-image'/>
+            <h3>Fetching data...</h3>
+            <h5>This could take 30-60 seconds</h5>
+          </div>
+        </div>
+      ) 
+    } else {
+      jobName = this.props.salaries[0].job_name.replace(/-+/g, ' ');
+      jobName = jobName[0].toUpperCase() + jobName.substr(1);
+    }
+    
     return (
       <div className="results">
         <div className='results-list-container'>
+          <h1 className='results-salary-name'>{jobName}</h1>
           <div className='results-list-header'>
             <div className='results-list-rank' onClick={()=> this.orderByRank(this.props.salaries[0].job_name)}>Rank</div>
             <div className='results-list-salary' onClick={()=> this.orderByRank(this.props.salaries[0].job_name)}>Relative Salary</div>

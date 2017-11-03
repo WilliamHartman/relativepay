@@ -55,12 +55,16 @@ module.exports = {
                         } else {
                             db.get_salaries([searchTerm])
                             .then( salaries => {
-                                console.log('Sending salaries to frontend')
-                                res.status(200).send(salaries)
-
                                 for(let l=0; l<salaries.length; l++){
-                                    console.log('set ranks: ', salaries[1].salary_id, l+1)
-                                    db.set_ranks(salaries[l].salary_id, l+1)
+                                    if(l === salaries.length-1){
+                                        db.set_ranks(salaries[l].salary_id, l+1)
+                                            .then(() => {
+                                                console.log('Sending salaries to frontend')
+                                                res.status(200).send(salaries)
+                                            })
+                                    } else {
+                                        db.set_ranks(salaries[l].salary_id, l+1)                                        
+                                    }
                                 }
                             });
                         }

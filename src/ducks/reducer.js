@@ -4,7 +4,7 @@ const initialState = {
     salaries: [],
     popularJobs: []
 }
-
+ 
 const UPDATE_SALARIES = 'UPDATE_SALARIES'; 
 const REMOVE_SALARIES = 'REMOVE_SALARIES'; 
 const GET_POPULAR_JOBS = 'GET_POPULAR_JOBS';

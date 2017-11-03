@@ -62,7 +62,7 @@ class Navbar extends Component {
                         <div>
                             <MDMenu
                             size={35}
-                            color='white'                         
+                            color='#85bb65'                         
                             onClick={this.handleToggle}
                             />
                             <Drawer
@@ -93,7 +93,7 @@ class Navbar extends Component {
                         onChange={e => this.updateSearchTerm(e)}
                         onKeyDown={e => this.checkEnter(e)}
                         value={this.state.searchTerm}
-                        placeholder='Chris is the best'/>
+                        placeholder='Search jobs'/>
                     </div>
                 </div>
             </div>

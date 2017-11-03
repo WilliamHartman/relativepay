@@ -9,6 +9,11 @@
 .results-list-container {
     width: 100%;
     max-width: 400px;
+    background: #85bb65;
+}
+
+.results-salary-name {
+    text-align: center;
 }
 
 .results-list-jsx {
@@ -64,4 +69,19 @@
 .results-list-city-header {
     grid-column: 3/4;
     border: 1px black solid;
+}
+
+.loading-container {
+    width: 100%;
+    max-width: 400px;
+    height: calc(100vh - 110px);
+    background: #fcfcfc;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading-image {
+    color: red;
 }
