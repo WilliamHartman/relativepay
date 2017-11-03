@@ -47,7 +47,6 @@ module.exports = {
                         //If this was the first time through the cities
                         if(flag === false){ 
                             console.log('Second pass')
-                            console.log(skippedCities)
                             //Rerun search with longer timeout
                             for(let k=0; k<skippedCities.length; k++){
                                 setTimeout(getSalaries(k, skippedCities, jobID), k * 1000)
@@ -58,6 +57,11 @@ module.exports = {
                             .then( salaries => {
                                 console.log('Sending salaries to frontend')
                                 res.status(200).send(salaries)
+
+                                for(let l=0; l<salaries.length; l++){
+                                    console.log('set ranks: ', salaries[1].salary_id, l+1)
+                                    db.set_ranks(salaries[l].salary_id, l+1)
+                                }
                             });
                         }
                     } 
@@ -77,6 +81,7 @@ module.exports = {
                         });
                     db.increment_times_searched([job[0].job_id, job[0].times_searched+1])
                 } else {
+                    console.log(searchTerm)
                     google.search(searchTerm)
                         .then(images => {
                            //If job is not in the database, create it in jobs table
@@ -102,6 +107,27 @@ module.exports = {
     getPopularJobs: (req, res) => {
         const db = req.app.get('db');
         db.get_popular_jobs()
+            .then(jobs => res.status(200).send(jobs))
+            .catch(() => res.status(500).send());
+    },
+
+    getSalariesByState: (req, res) => {
+        const db = req.app.get('db');
+        db.get_salaries_by_state(req.params.job)
+            .then(jobs => res.status(200).send(jobs))
+            .catch(() => res.status(500).send());
+    },
+
+    getSalariesByCity: (req, res) => {
+        const db = req.app.get('db');
+        db.get_salaries_by_city(req.params.job)
+            .then(jobs => res.status(200).send(jobs))
+            .catch(() => res.status(500).send());
+    },
+
+    getSalariesByRank: (req, res) => {
+        const db = req.app.get('db');
+        db.get_salaries(req.params.job)
             .then(jobs => res.status(200).send(jobs))
             .catch(() => res.status(500).send());
     }

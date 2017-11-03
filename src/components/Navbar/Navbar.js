@@ -93,15 +93,11 @@ class Navbar extends Component {
                         onChange={e => this.updateSearchTerm(e)}
                         onKeyDown={e => this.checkEnter(e)}
                         value={this.state.searchTerm}
-                        placeholder='Search jobs'/>
+                        placeholder='Chris is the best'/>
                     </div>
                 </div>
             </div>
         )
-    }
-
-    mainRender(){
-        
     }
 }
 

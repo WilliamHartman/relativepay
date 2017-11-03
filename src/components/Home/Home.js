@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import './Home.css';
 import { connect } from 'react-redux';
 import { removeSalaries, getPopularJobs, updateSalaries } from './../../ducks/reducer';
-import { Link } from 'react-router-dom';
-
+import { withRouter } from 'react-router';
 
 
 class Home extends Component {
@@ -25,22 +24,20 @@ class Home extends Component {
   handleSearchClick = (searchTerm) => {
     this.props.removeSalaries();
     this.props.updateSalaries(searchTerm);
+    this.props.history.push('/results');
 }
   
   popularJobsList(){
     return this.props.popularJobs.map( (job, i) => {
       let jobName = job.job_name.replace(/-+/g, ' ')
       jobName = jobName[0].toUpperCase() + jobName.substr(1);
-      console.log(jobName)
       return(
-        <Link key={i} to='/results'>
-          <div className='popular-jobs-list' onClick={this.handleSearchClick(jobName)}>
+          <div key={i} className='popular-jobs-list' onClick={() => this.handleSearchClick(jobName)}>
             <img src={job.image} alt={jobName} className='popular-jobs-list-image'/>
               <div className='popular-jobs-list-job'>
                 <div>{jobName}</div>
               </div>
           </div>
-        </Link>
       )
     })
   }
@@ -71,4 +68,4 @@ function mapStateToProps(state){
   }
 }
 
-export default connect(mapStateToProps, { removeSalaries, getPopularJobs, updateSalaries })(Home);
+export default withRouter(connect(mapStateToProps, { removeSalaries, getPopularJobs, updateSalaries })(Home));
