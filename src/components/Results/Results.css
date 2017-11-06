@@ -9,7 +9,7 @@
 .results-list-container {
     width: 100%;
     max-width: 400px;
-    background: #85bb65;
+    background: #f3f3f3;
 }
 
 .results-salary-name {
@@ -82,6 +82,8 @@
     align-items: center;
 }
 
-.loading-image {
-    color: red;
+@media (min-width: 800px) {
+    .results-list-container {
+        max-width: calc(100% - 10px)
+    }
 }

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './Navbar.css';
-import Avatar from 'material-ui/Avatar';
 import Drawer from 'material-ui/Drawer';
 import MDMenu from 'react-icons/lib/md/menu.js';
 import MDSearch from 'react-icons/lib/md/search.js';
@@ -54,35 +53,37 @@ class Navbar extends Component {
             <div className='navbar-main'>
                 <div className='navbar-top'>
                     <div className='navbar-top-left'>
-                        <img src={logo} alt="logo" className='logo'/>
-                        <Link to='/'><h1 className='navbar-title'>relative<span className='gold-text'>pay</span></h1></Link>
+                        <Link to='/' className='link'><img src={logo} alt="logo" className='logo'/></Link>
+                        <Link to='/' className='link'><h1 className='navbar-title'>relative<span className='gold-text'>pay</span></h1></Link>
                     </div>
                     <div className='navbar-top-right'>
-                        <Avatar size={30}/>
-                        <div>
+                        <div className='mobile-menu'>
                             <MDMenu
-                            size={35}
-                            color='#85bb65'                         
-                            onClick={this.handleToggle}
+                                size={35}
+                                color='#85bb65'                         
+                                onClick={this.handleToggle}
                             />
                             <Drawer
-                            docked={false}
-                            width={300}
-                            open={this.state.open}
-                            openSecondary={true}
-                            onRequestChange={(open) => this.setState({open})}
-                            containerClassName='drawer'
-                            >
-                            <Link to='/'><MenuItem onClick={this.handleClose} className='menu-item'>Home</MenuItem></Link>
-                            <MenuItem onClick={this.handleClose} className='menu-item'>About</MenuItem>
-                            <MenuItem onClick={this.handleClose} className='menu-item'>Settings</MenuItem>
+                                docked={false}
+                                width={300}
+                                open={this.state.open}
+                                openSecondary={true}
+                                onRequestChange={(open) => this.setState({open})}
+                                containerClassName='drawer'
+                                >
+                                <Link to='/' className='link'><MenuItem onClick={this.handleClose} className='menu-item'>Home</MenuItem></Link>
+                                <Link to='/about' className='link'><MenuItem onClick={this.handleClose} className='menu-item'>About</MenuItem></Link>
                             </Drawer>
+                        </div>
+                        <div className="desktop-menu">
+                            <Link to='/' className='link'><div className='navbar-menu-home'>Home</div></Link>
+                            <Link to='/about' className='link'><div className='navbar-menu-about'>About</div></Link>
                         </div>
                     </div>
                 </div>
                 <div className='navbar-bottom'>
                     <div className='navbar-search-container'>
-                        <Link to='/results'>                        
+                        <Link to='/results' className='link'>                        
                             <div onClick={this.handleSearchClick}>
                                 <MDSearch 
                                 size={30}/>

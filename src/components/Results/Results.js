@@ -3,6 +3,7 @@ import './Results.css';
 import { connect } from 'react-redux';
 import CircularProgress from 'material-ui/CircularProgress';
 import { getSalariesByState, getSalariesByRank, getSalariesByCity } from './../../ducks/reducer';
+import Chart from '../Chart/Chart';
 
 class Results extends Component {
   constructor(){
@@ -47,7 +48,7 @@ class Results extends Component {
       return (
         <div className='results'>
           <div className='loading-container'>
-            <CircularProgress size={80} thickness={7} color={'#85bb65'} className='loading-image'/>
+            <CircularProgress size={80} thickness={7} color={'#85bb65'} />
             <h3>Fetching data...</h3>
             <h5>This could take 30-60 seconds</h5>
           </div>
@@ -61,7 +62,8 @@ class Results extends Component {
     return (
       <div className="results">
         <div className='results-list-container'>
-          <h1 className='results-salary-name'>{jobName}</h1>
+          <Chart jobName={jobName}/>
+          <h1 className='results-salary-name'>{jobName} - Relative Salaries List</h1>
           <div className='results-list-header'>
             <div className='results-list-rank' onClick={()=> this.orderByRank(this.props.salaries[0].job_name)}>Rank</div>
             <div className='results-list-salary' onClick={()=> this.orderByRank(this.props.salaries[0].job_name)}>Relative Salary</div>

@@ -58,6 +58,18 @@
     font-size: 20px !important;
 }
 
+.desktop-menu {
+    display: none;
+}
+
+.navbar-menu-home {
+    color: #85bb65;
+}
+
+.navbar-menu-about {
+    color: #ffcb00;
+}
+
 .navbar-bottom {
     height: 60px;
     width: 100%;
@@ -92,4 +104,75 @@
     text-align: left;
     font-size: 17px;
     padding: 0px;
+}
+
+@media (min-width: 800px) {
+    .navbar-main {
+        height: 160px;
+    }
+
+    .navbar-top {
+        height: 80px;
+    }
+
+    .navbar-top-left {
+        height: 70px;
+    }
+
+    .logo {
+        height: 65px;
+        width: 65px;
+        margin-left: 10px;
+        margin-top: 5px;
+    }
+
+    .navbar-title {
+        font-size: 45px;
+        color: #85bb65;
+        margin: 7px 0px 0px 7px;
+    }
+
+    .mobile-menu {
+        display: none;
+    }
+
+    .navbar-top-right {
+        width: 250px;
+    }
+
+    .desktop-menu {
+        width: 100%;
+        display: flex;
+        color: white;
+        font-size: 25px;
+        font-weight: 700;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .navbar-bottom {
+        height: 80px;
+    }
+
+    .navbar-search-container {
+        height: 45px;
+        width: 600px;
+    }
+    
+    .navbar-search-container div {
+        height: 45px;
+        width: 45px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .navbar-search-container input {
+        height: 45px;
+        width: calc(100% - 49px);
+    }
+}
+
+.link {
+    text-decoration: none !important;
 }

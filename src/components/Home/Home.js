@@ -53,7 +53,9 @@ class Home extends Component {
         <div className='home-main-content'>
           <div className='home-top-search-container'>
             <h1>Top searches</h1>
-            {jsxPopularJobs}
+            <div className='home-top-search-desktop'>
+              {jsxPopularJobs}
+            </div>
           </div>
         </div>
       </div>

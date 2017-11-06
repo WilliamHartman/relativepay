@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.17.0",
     "body-parser": "^1.18.2",
+    "chart.js": "^2.7.1",
     "cors": "^2.8.4",
     "dotenv": "^4.0.0",
     "express": "^4.16.2",
@@ -12,6 +13,7 @@
     "massive": "^4.4.0",
     "material-ui": "^0.19.4",
     "react": "^16.0.0",
+    "react-chartjs-2": "^2.6.4",
     "react-dom": "^16.0.0",
     "react-icons": "^2.2.7",
     "react-redux": "^5.0.6",
@@ -29,5 +31,5 @@
     "eject": "react-scripts eject"
   },
   "main": "./server/index.js",
-  "proxy": "http://localhost:8080"
+  "proxy": "http://localhost:8080",
 }

@@ -17,7 +17,7 @@ export function updateSalaries( searchTerm ){
     let stFixed = searchTerm.replace(/\s+/g, '-').toLowerCase();
     return {
         type: UPDATE_SALARIES,
-        payload: axios.get(`http://localhost:8080/api/salaries/get/${stFixed}`).then( res => res.data)
+        payload: axios.get(`/api/salaries/get/${stFixed}`).then( res => res.data)
     }
 }
 
@@ -31,7 +31,7 @@ export function removeSalaries(){
 export function getPopularJobs(){
     return {
         type: GET_POPULAR_JOBS,
-        payload: axios.get(`http://localhost:8080/api/salaries/getpopularjobs`).then(res => res.data)
+        payload: axios.get(`/api/salaries/getpopularjobs`).then(res => res.data)
     }
 }
 
@@ -39,7 +39,7 @@ export function getSalariesByState(searchTerm){
     let stFixed = searchTerm.replace(/\s+/g, '-').toLowerCase();
     return {
         type: GET_SALARIES_BY_STATE,
-        payload: axios.get(`http://localhost:8080/api/salaries/getbystate/${stFixed}`).then(res => res.data)        
+        payload: axios.get(`/api/salaries/getbystate/${stFixed}`).then(res => res.data)        
     }
 }
 
@@ -47,7 +47,7 @@ export function getSalariesByRank(searchTerm){
     let stFixed = searchTerm.replace(/\s+/g, '-').toLowerCase();
     return {
         type: GET_SALARIES_BY_RANK,
-        payload: axios.get(`http://localhost:8080/api/salaries/getbyrank/${stFixed}`).then(res => res.data)        
+        payload: axios.get(`/api/salaries/getbyrank/${stFixed}`).then(res => res.data)        
     }
 }
 
@@ -55,7 +55,7 @@ export function getSalariesByCity(searchTerm){
     let stFixed = searchTerm.replace(/\s+/g, '-').toLowerCase();
     return {
         type: GET_SALARIES_BY_CITY,
-        payload: axios.get(`http://localhost:8080/api/salaries/getbycity/${stFixed}`).then(res => res.data)        
+        payload: axios.get(`/api/salaries/getbycity/${stFixed}`).then(res => res.data)        
     }
 }
 
