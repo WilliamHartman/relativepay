@@ -1,0 +1,11 @@
+.chart {
+    width: 100%;
+    margin-top: 50px;
+}
+
+@media (min-width: 1000px) {
+    .chart {
+        width: calc(100% - 450px);
+        margin-top: 50px;
+    }
+}

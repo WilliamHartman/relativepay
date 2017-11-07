@@ -58,7 +58,7 @@ class Chart extends Component {
                         title: {
                             display: true,
                             text: `${this.props.jobName} - Relative Salaries Chart`,
-                            fontSize: 25
+                            fontSize: 35
                         },
                         legend: {
                             display: false

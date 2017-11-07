@@ -82,8 +82,30 @@
     align-items: center;
 }
 
-@media (min-width: 800px) {
+@media (min-width: 700px) {
     .results-list-container {
-        max-width: calc(100% - 10px)
+        max-width:100%;
+    }
+
+    .results-chart {
+        width: 100%;
+    }
+}
+
+@media (min-width: 1000px) {
+    .results-list-container {
+        max-width: calc(100% - 10px);
+        display: flex;
+        flex-direction: row;
+    }
+
+    .results-chart {
+        width: calc(100% - 450px);
+        max-width: none;
+    }
+
+    .results-list-desktop {
+        width: 400px;
+        margin-left: 10px;
     }
 }

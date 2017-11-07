@@ -62,15 +62,17 @@ class Results extends Component {
     return (
       <div className="results">
         <div className='results-list-container'>
-          <Chart jobName={jobName}/>
-          <h1 className='results-salary-name'>{jobName} - Relative Salaries List</h1>
-          <div className='results-list-header'>
-            <div className='results-list-rank' onClick={()=> this.orderByRank(this.props.salaries[0].job_name)}>Rank</div>
-            <div className='results-list-salary' onClick={()=> this.orderByRank(this.props.salaries[0].job_name)}>Relative Salary</div>
-            <div className='results-list-city-header' onClick={()=> this.orderByCity(this.props.salaries[0].job_name)}>City</div>
-            <div className='results-list-state' onClick={()=> this.orderByState(this.props.salaries[0].job_name)}>State</div>
+          <Chart jobName={jobName} className='results-chart'/>
+          <div className='results-list-desktop'>
+            <h1 className='results-salary-name'>{jobName} - Relative Salaries List</h1>
+            <div className='results-list-header'>
+              <div className='results-list-rank' onClick={()=> this.orderByRank(this.props.salaries[0].job_name)}>Rank</div>
+              <div className='results-list-salary' onClick={()=> this.orderByRank(this.props.salaries[0].job_name)}>Relative Salary</div>
+              <div className='results-list-city-header' onClick={()=> this.orderByCity(this.props.salaries[0].job_name)}>City</div>
+              <div className='results-list-state' onClick={()=> this.orderByState(this.props.salaries[0].job_name)}>State</div>
+            </div>
+            {jsxSalaries}
           </div>
-          {jsxSalaries}
         </div>
       </div>
     );
