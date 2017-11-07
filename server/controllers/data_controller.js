@@ -81,7 +81,21 @@ module.exports = {
                     //will return all of the tables joined with just the job searched, sorted by relative salary descending
                     db.get_salaries([searchTerm])
                         .then( salaries => {
-                            res.status(200).send(salaries)
+                            if(salaries.length > 75) {
+                                res.status(200).send(salaries)
+                            } else {
+                                db.delete_salaries([searchTerm])
+                                    .then( () => { 
+                                        db.get_cities()
+                                            .then( cities => {
+                                                //Iterates through cities, calls the getsalaries function above. 
+                                                //On a 0.2 second time out to avoid bot detection
+                                                for(let j=0; j<cities.length; j++){
+                                                    setTimeout(getSalaries(j, cities, job[0].job_id), j * 200)
+                                                }
+                                            })
+                                    })
+                            }
                         });
                     db.increment_times_searched([job[0].job_id, job[0].times_searched+1])
                 } else {

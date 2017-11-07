@@ -31,5 +31,5 @@
     "eject": "react-scripts eject"
   },
   "main": "./server/index.js",
-  "proxy": "http://localhost:8080",
+  "proxy": "http://localhost:8080"
 }
