@@ -1,0 +1,15 @@
+.footer {
+    width: 100%;
+    height: 50px;
+    background: #142532;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.social-media {
+    width: 200px;
+    display: flex;
+    justify-content: space-around;
+}

@@ -65,7 +65,7 @@ class Navbar extends Component {
                             />
                             <Drawer
                                 docked={false}
-                                width={300}
+                                width={200}
                                 open={this.state.open}
                                 openSecondary={true}
                                 onRequestChange={(open) => this.setState({open})}

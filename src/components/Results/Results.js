@@ -98,6 +98,7 @@ class Results extends Component {
           modal={false}
           open={this.state.open}
           onRequestClose={this.handleClose}
+          contentStyle={{width:'300px'}}
         >
           <b>Cost of Living Index: </b>{salary.col} <br /><b>Raw Salary: </b>${salary.salary.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")} <br /><b>Relative Salary: </b>${salary.relative_salary.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")} <br /><b>Rank: </b>{salary.salary_rank}
         </Dialog>

@@ -18,16 +18,12 @@ class Chart extends Component {
     componentWillMount = () => {
       this.createChartData();
     }
-
-    componentWillReceiveProps = (nextProps) => {
-      this.createChartData();
-    }
     
     createChartData(){
         let salaries = this.props.salaries;
         let labels = salaries.map( salary => salary.city_name);
         let salariesArr = salaries.map( salary => salary.relative_salary);
-        let colorsArr = salariesArr.map( (salary, i) => i%2 ? '#ffcb00': '#85bb65')
+        let colorsArr = salariesArr.map( (salary, i) => i%2 ? '#85bb65': '#ffcb00')
 
         this.setState({
             chartData: {
