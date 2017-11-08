@@ -33,23 +33,31 @@ module.exports = {
                         //Pushes to array and posts to database in salary table
                         salariesArray.push({city_id: cities[i].city_id, salary: regRes});
                         db.post_salary([cities[i].city_id, jobID, regRes, relativeSalary])
-                        console.log('success: ', cities[i].city_name)
+                        console.log(searchTerm, ' success: ', cities[i].city_name)
                     } else {
                         //If no result, adds to skipped cities array
-                        console.log('fail: ', cities[i].city_name)
+                        console.log(searchTerm, ' fail: ', cities[i].city_name)
                         if(flag === false)                        
                             skippedCities.push(cities[i]);
                     }
                     console.log(`${i} / ${cities.length-1}`)
-                    //When the end of the array is reached
+                    //When the end of the array is reachedrs
                     if(i === cities.length-1){
                         console.log('flag: ', flag)
                         //If this was the first time through the cities
                         if(flag === false){ 
                             console.log('Second pass')
-                            //Rerun search with longer timeout
-                            for(let k=0; k<skippedCities.length; k++){
-                                setTimeout(getSalaries(k, skippedCities, jobID), k * 1000)
+                            //Rerun search with longer timeout 
+                            if(skippedCities.length > 75){
+                                db.delete_salaries([searchTerm])
+                                    .then( () => {
+                                        db.delete_job([searchTerm])
+                                            .then( () => res.status(200).send([{job_name: searchTerm}]))
+                                    })
+                            } else {
+                                for(let k=0; k<skippedCities.length; k++){
+                                    setTimeout(getSalaries(k, skippedCities, jobID), k * 1000)
+                                }
                             }
                             flag=true;
                         } else {

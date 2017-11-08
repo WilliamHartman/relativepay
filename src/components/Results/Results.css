@@ -84,6 +84,13 @@
     align-items: center;
 }
 
+.results-fail {
+    width: 100%;
+    height: calc(100vh - 200px);
+    color: red;
+    text-align: center;
+}
+
 @media (min-width: 700px) {
     .results-list-container {
         max-width:100%;

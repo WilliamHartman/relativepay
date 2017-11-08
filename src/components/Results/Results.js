@@ -27,6 +27,9 @@ class Results extends Component {
   }
 
   resultsList(){
+    if(this.props.salaries.length === 1) {
+      return (<h1 className='results-fail'>Glassdoor does not have any salary information on that job.</h1>)
+    }
     return this.props.salaries.map( (salary, i) => {
       let relSalStr = '$' + salary.relative_salary.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
       return (
@@ -67,6 +70,7 @@ class Results extends Component {
     let jsxSalaries = this.resultsList();
     let jobName = '';
 
+    console.log(this.props.salaries)
     if(this.props.salaries.length === 0){
       return (
         <div className='results'>
@@ -80,6 +84,14 @@ class Results extends Component {
     } else {
       jobName = this.props.salaries[0].job_name.replace(/-+/g, ' ');
       jobName = jobName[0].toUpperCase() + jobName.substr(1);
+    }
+
+    if(this.props.salaries.length === 1) {
+      return (
+        <div className="results">
+          {jsxSalaries}
+        </div>
+      )
     }
 
     const actions = [
