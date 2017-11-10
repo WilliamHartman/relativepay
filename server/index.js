@@ -25,6 +25,10 @@ app.get(`${baseURL}/getbystate/:job`, dCtrl.getSalariesByState)
 app.get(`${baseURL}/getbycity/:job`, dCtrl.getSalariesByCity)
 app.get(`${baseURL}/getbyrank/:job`, dCtrl.getSalariesByRank)
 
+const path = require('path')
+app.get('*', (req, res)=>{
+  res.sendFile(path.join(__dirname, '../build/index.html'));
+})
 
-const port = 8080;
-app.listen(port, () => console.log(`Listening on ${port}`));
+
+app.listen(process.env.PORT, () => console.log(`Listening on ${process.env.PORT}`));

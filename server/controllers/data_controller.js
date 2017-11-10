@@ -56,7 +56,7 @@ module.exports = {
                                     })
                             } else {
                                 for(let k=0; k<skippedCities.length; k++){
-                                    setTimeout(getSalaries(k, skippedCities, jobID), k * 1000)
+                                    setTimeout(getSalaries(k, skippedCities, jobID), k * 500)
                                 }
                             }
                             flag=true;
@@ -99,7 +99,7 @@ module.exports = {
                                                 //Iterates through cities, calls the getsalaries function above. 
                                                 //On a 0.2 second time out to avoid bot detection
                                                 for(let j=0; j<cities.length; j++){
-                                                    setTimeout(getSalaries(j, cities, job[0].job_id), j * 200)
+                                                    setTimeout(getSalaries(j, cities, job[0].job_id), j * 100)
                                                 }
                                             })
                                     })
