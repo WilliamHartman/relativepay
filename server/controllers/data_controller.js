@@ -21,7 +21,7 @@ module.exports = {
         function getSalaries(i, cities, jobID){
             return function(){
                 //Builds the url using lots of variabled. Filters for the id 'MeanPay_M in a div, returns it as a string in a object in an array
-                xray(`${gdURL}${cities[i].city_search_name}-${searchTerm}-salary-${cities[i].unique_str}${cities[i].unique_num+searchTerm.length}.htm`, 'div#MeanPay_M', [{
+                xray(`${gdURL}${cities[i].city_search_name}-${searchTerm}-salary-${cities[i].unique_str}${cities[i].unique_num+searchTerm.length}.htm`, 'span.OccMedianBasePayStyle__payNumber', [{
                     salary: ''
                 }])((err, result) => {
                     //If there is a result
